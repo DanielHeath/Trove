@@ -1,0 +1,91 @@
+body {
+  font-family: Verdana, Helvetica, "sans-serif" !important;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
+}
+
+.active-scaffold { margin: 0 !important; }
+
+.active-scaffold div.active-scaffold-header {
+  background: #f1f0ee !important;
+  display: block !important;
+  height: 28px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 20px solid #f7f6f5 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+.active-scaffold-header h2 {
+  position: relative !important;
+  top: -45px !important;
+  left: 20px !important;
+  color: #f58125 !important;
+  width: 45% !important;
+}
+
+.active-scaffold-header .actions a { color: #9a8b7d !important; line-height: 1em; font-weight: normal !important; font-size: .7em !important; }
+.active-scaffold-header .actions a:hover { background-color: #fff !important; }
+
+.active-scaffold div { padding: 20px !important; }
+.active-scaffold .active-scaffold-footer,
+.active-scaffold .active-scaffold-footer div,
+.active-scaffold div.actions,
+.active-scaffold .messages-container div { padding: 0 !important; }
+
+.active-scaffold div.actions { padding-right: 20px !important; }
+.active-scaffold .active-scaffold-footer div { color: #f58125 !important; margin-top: 1em; }
+
+#navigation {
+  height: 30px !important;
+  background: #f7f6f5 !important;
+  text-align: right !important;
+  padding: 15px 20px !important;
+  padding-right: 40px !important;
+  font-size: 15px !important;
+  line-height: 30px !important;
+  font-weight: normal !important;
+  margin: 0 !important;
+  z-index: 100 !important;
+}
+#navigation a { color: #9a8b7d !important; line-height: 1em; }
+#navigation a:hover { background: none !important; color: #6d6053 !important; text-decoration: underline !important; }
+
+.active-scaffold table { border-collapse: collapse !important; }
+.active-scaffold tr.record td { background-color: #fff !important; }
+.active-scaffold tr.even-record td { background-color: #FFFBF7 !important; }
+.active-scaffold tr td { border: 1px solid #f5f5f5 !important; }
+.active-scaffold tr td.messages-container { border: 0 !important; }
+.active-scaffold tr td.actions table td { border: 0 !important; }
+
+.active-scaffold tr.record td.actions a { color: #ff9900 !important; font-weight: normal !important; }
+.active-scaffold tr.record td.actions a:hover { color: #AF6900 !important; text-decoration: underline !important; background: none !important; }
+
+.view { border: 1px solid #f4a566 !important; background: #fef8f3 !important; padding: 20px !important; margin: 20px !important; margin-bottom: 0 !important; }
+.view div { padding: 0 !important; }
+.view h4, .view a { color: #f58125 !important; }
+.view a:hover { text-decoration: none !important; text-decoration: underline !important; background: none !important; }
+.view input.text-input, .view select { border: 1px solid #f7cdac !important; }
+.active-scaffold tr td.inline-adapter-cell { border: 0 !important; }
+.active-scaffold .before-header td.inline-adapter-cell .view a.inline-adapter-close {
+  display: block !important;
+  height: 14px !important;
+  width: 14px !important;
+  background-image:url(data:image/jpg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAUAAA/+4ADkFkb2JlAGTAAAAAAf/bAIQAAgICAgICAgICAgMCAgIDBAMCAgMEBQQEBAQEBQYFBQUFBQUGBgcHCAcHBgkJCgoJCQwMDAwMDAwMDAwMDAwMDAEDAwMFBAUJBgYJDQsJCw0PDg4ODg8PDAwMDAwPDwwMDAwMDA8MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgADgAOAwERAAIRAQMRAf/EAHEAAAMBAAAAAAAAAAAAAAAAAAADBQkBAAMBAAAAAAAAAAAAAAAAAAACBAYQAAECBQQDAQEAAAAAAAAAAAIBAxESBAUGACETB0EiFDIjEQABAgUDBAMAAAAAAAAAAAABEQIhMUESBQADBCJiFBUyUhP/2gAMAwEAAhEDEQA/ANsuwewi69K0XC4WdysxuscNm6XVg4uUriw4v5Q9kLeKx21n85nPVFj3sJ2iSHOE2mkKrrQYPB+1vYx4G6AC1pk4VjRNDOX5CuDVeYv48Avio1dHZRfFXSoOUYkZ/hHeGYpYwj6zedDMpyfAdyjtR+QasbFEzK61SklgtdD8Xx/PbxRuw+JckL0MhO25As0ilNMzJvA1vWOuZm+AviNSllp6xHPiJxRGciVRVnkQYyzLNCaXzpsq3gfvtHlmPVaHLYte25JLFFSulxTuf+G6OIIdNxal6U7rVmkFRaajs0/XSda1bY11SXX5Pobj5DVSC19YFICKE/zzQGKJJxx3k31IxmN9Y4Bx8ZZ9SJcICC2LD629uqnvyXs2ktHkpLpVbTExS9I/a7u1/9k=) !important;
+}
+
+#admin_area_header, #admin_area_content { margin: 0; padding: 20px; }
+#admin_area_header { padding-bottom: 0; }
+#admin_area_content { padding-top: 0; }
+
+#admin_area_header h1, #admin_area_content h1 {
+  color: #f58125;
+  font-size: 1.2em;
+  font-weight: normal;
+}
+
+#admin_area_content { color: #9a8b7d; font-size: .8em; }
+
+form { padding: 20px; padding-top: 0; font-size: .8em; }
+form label { color: #f58125; margin-bottom: .5em; }

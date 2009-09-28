@@ -1,0 +1,36 @@
+#navigation {
+  background-color: #555555;
+  
+  color: #FFFFFF;
+  font-family: arial,sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  text-decoration: none;
+  text-align: center;
+  
+  height: 17px;
+  padding-top: 5px;
+}
+
+#navigation #admin_areas {
+  display: inline;
+}
+
+#navigation #admin_areas li {
+  display: inline;
+  padding: 5px;
+}
+
+#navigation #admin_areas li a:hover {
+  color: #FFFF88;
+}
+
+#navigation #admin_areas li a:visited {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+
+@import "reset.css";
+@import "cmxform.css";
+@import "screen.css";
