@@ -638,7 +638,11 @@ module FileColumn # :nodoc:
       end
 
       define_method "#{attr}=" do |file|
-        state = send(state_method).assign(file)
+        if file
+          state = send(state_method).assign(file)
+        else
+          state = send(state_method).delete
+        end
         instance_variable_set state_attr, state
         if state.options[:after_upload] and state.just_uploaded?
           state.options[:after_upload].each do |sym|

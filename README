@@ -1,6 +1,6 @@
 Todo:
 Create and use bodyslot images (add to /lib - needs an artist, really.).
-Get lists to generate pages for all items in list. (action links?)
+Bulk entry of items for a given itemlist, comma-seperated entry of lists for items (a la tagging)
 Get lists to generate pages for all modified after a certain date.(action links?)
 Test printing a generated page (home only)
 

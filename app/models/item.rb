@@ -5,6 +5,7 @@ class Item < ActiveRecord::Base
   has_many :item_list_items
   has_many :item_lists, :through => :item_list_items
   validates_inclusion_of :body_slot, :in => BODY_SLOTS
+  validates_uniqueness_of :name
   before_save :generate_card_image
   
   file_column :main_image

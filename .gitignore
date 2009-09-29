@@ -4,3 +4,6 @@ doc/api
 doc/app
 public/card_page/*/*/*
 public/item/*/*/*/*
+db/*.sqlite3
+
+

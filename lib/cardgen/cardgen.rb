@@ -107,14 +107,18 @@ module CardGen
       card = Image.read(t.template_file).first
       card.resize_to_fill!(t.card_width, t.card_height)
 
-      main_pic = Image.read(t.main_image).first
-      main_pic.resize!(t.main_pic_width, t.main_pic_height)
-      card.composite!(main_pic, t.main_pic_pos_x, t.main_pic_pos_y, OverCompositeOp)
-
-      minor_pic = Image.read(t.minor_image).first
-      minor_pic.resize!(t.minor_image_width,t.minor_image_height)
-      card.composite!(minor_pic, t.minor_image_pos_x, t.minor_image_pos_y, OverCompositeOp)
-
+      if t.main_image and File.exists? t.main_image 
+        main_pic = Image.read(t.main_image).first
+        main_pic.resize!(t.main_pic_width, t.main_pic_height)
+        card.composite!(main_pic, t.main_pic_pos_x, t.main_pic_pos_y, OverCompositeOp)
+      end
+      
+      if t.minor_image and File.exists? t.minor_image
+        minor_pic = Image.read(t.minor_image).first
+        minor_pic.resize!(t.minor_image_width,t.minor_image_height)
+        card.composite!(minor_pic, t.minor_image_pos_x, t.minor_image_pos_y, OverCompositeOp)
+      end
+      
       add_text card, t.title
       add_text card, t.powers
       add_text card, t.bonus
