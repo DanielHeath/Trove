@@ -11,6 +11,18 @@
 		<%= stylesheet_link_tag "application" %>
 	</head>
 	<body>
-		<%= yield  %>
+		<div id="Content">
+			<h1><%= @title %></h1>
+			<%= flash[:message] %><br />
+			<%= yield %>
+		</div>
+
+		<div id="Menu">
+			<ul>
+			<li><a href="/item">Items</a></li>
+			<li><a href="/item_list">Item lists</a></li>
+			<li><a href="/card_page">Card Pages</a></li>
+			</ul>
+		</div>
 	</body>
 </html>

@@ -1,8 +1,15 @@
-#main {
-float:right;
-width:80%;
-}
-#leftbar {
-float:left;
-width:20%;
-}
+#Content {
+	margin:0px 50px 50px 200px;
+	padding:10px;
+	}
+
+#Menu {
+	position:absolute;
+	top:100px;
+	left:20px;
+	padding:10px;
+	background-color:#eee;
+	border:1px dashed #999;
+	line-height:17px;
+	width:150px;
+	}
