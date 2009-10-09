@@ -1,0 +1,13 @@
+image_base: lib/cardgen/pics3
+temp_dir: tmp/images
+images: 
+  Weapon: Sword.psd
+  Ring: Ring.psd
+  Boots: Boots.psd
+  Shield: Shield.psd
+  Armor: Armor.psd
+  Helm: Helm.png
+template: Template.png
+page_width_px: 1749
+page_height_px: 2478
+page_dpi: 300

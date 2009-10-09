@@ -3,7 +3,7 @@
 	<label>Slot used</label>
 </dt>
 <dd>
-	<%= select("record", "body_slot", Item.valid_slots.collect {|s| [s,s] }, :selected => Item.default_slot ) %>
+	<%= select("record", "body_slot", Item.valid_slots.collect {|s| [s,s] }, :selected => @record.body_slot || Item.default_slot ) %>
 <span class="description"/>
 </dd>
 </dl>

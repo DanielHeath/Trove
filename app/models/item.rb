@@ -1,5 +1,6 @@
 SLOT_UNSLOTTED = "Unslotted"
-BODY_SLOTS = ["Armour", "Weapon", "Amulet", "Goggles", "Boots", SLOT_UNSLOTTED]
+#BODY_SLOTS = ["Armour", "Weapon", "Amulet", "Goggles", "Boots", SLOT_UNSLOTTED]
+BODY_SLOTS = (CardGen::Template.config["images"].keys + [SLOT_UNSLOTTED]).uniq
 
 class Item < ActiveRecord::Base
   has_many :item_list_items

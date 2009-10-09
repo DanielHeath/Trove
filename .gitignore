@@ -5,5 +5,7 @@ doc/app
 public/card_page/*/*/*
 public/item/*/*/*/*
 db/*.sqlite3
-
+lib/cardgen/pics/*
+lib/cardgen/pics/**/*
+lib/cardgen/pics2/*
 

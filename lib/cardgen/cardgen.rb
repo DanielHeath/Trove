@@ -1,40 +1,41 @@
 require 'rubygems'
 require 'RMagick'
 module CardGen
-  # Subclass these to implement your own versions of these constants!
-#  class TextTemplate; end
-#  class TitleTextTemplate < TextTemplate;end
-#  class BonusTextTemplate < TextTemplate;end
-#  class PowerTextTemplate < TextTemplate;end
-#  class Generator;end
 
   class Template
+    cattr_accessor :config
+    self.config = File.open(File.join('config', 'cardgen.yml'), 'r') { |f| YAML::load(f) }
+    
     attr_accessor :title, :powers, :bonus, :minor_image, :main_image, :output_file
-    def page_width;1749;end
-    def page_height;2478;end
-    def dpi;300;end
-    def dpc;112.1102;end
+
+    def page_width;self.class.config["page_width_px"];end
+    def page_height;self.class.config["page_height_px"];end
+    def dpi;self.class.config["page_dpi"];end
+    def dpc;0.3737 * dpi;end    
     def cards_across;4;end
     def cards_down;4;end
     def card_width;page_width / cards_across;end
     def card_height;page_height / cards_down;end
-    def template_file;File.join(File.dirname(__FILE__), 'pics', 'template2.png');end
+    def template_file;File.join(@image_base, @template_file);end
     def initialize(title, powers, bonus, slot, main_image)
+      @template_file = self.class.config["template"]
+      @image_base = self.class.config["image_base"]
       @main_image = main_image
-      @minor_image = File.join(File.dirname(__FILE__), 'pics', 'weapon.png') # Later: Lookup correct image from slot!
+      @minor_image = File.join(@image_base, self.class.config["images"][slot] || "image_not_found")
       @title = TitleTextTemplate.new(self, title)
       @powers = PowerTextTemplate.new(self, powers)
       @bonus = BonusTextTemplate.new(self, bonus)
       @output_file = 'output.png'
     end
-    def main_pic_width;367;end
-    def main_pic_height;271;end
-    def main_pic_pos_x;35;end
-    def main_pic_pos_y;73;end
-    def minor_image_width;80;end
-    def minor_image_height;80;end
-    def minor_image_pos_x;30;end
-    def minor_image_pos_y;card_height - minor_image_height - 30;end
+    def main_pic_width; 0.8393 * card_width;end
+    def main_pic_height; 0.43745 * card_height;end
+    def main_pic_pos_x;0.08 * card_width;end
+    def main_pic_pos_y;0.1178 * card_height;end
+    
+    def minor_image_width; 0.183 * card_width;end
+    def minor_image_height; 0.129 * card_height;end
+    def minor_image_pos_x; 0.06861 * card_width;end
+    def minor_image_pos_y; (0.9516 * card_height) - minor_image_height;end
     def generate_card;Generator.generate_card self;end
   end
 
@@ -104,6 +105,7 @@ module CardGen
     end
   
     def self.generate_image(t)
+      puts 'Generating image...'
       card = Image.read(t.template_file).first
       card.resize_to_fill!(t.card_width, t.card_height)
 
@@ -124,6 +126,7 @@ module CardGen
       add_text card, t.bonus
       
       card.density = t.dpc.to_s
+      puts 'Completed generating image.'
       card
     end
   
