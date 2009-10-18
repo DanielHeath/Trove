@@ -6,7 +6,7 @@ module CardGen
     cattr_accessor :config
     self.config = File.open(File.join('config', 'cardgen.yml'), 'r') { |f| YAML::load(f) }
     
-    attr_accessor :title, :powers, :bonus, :minor_image, :main_image, :output_file
+    attr_accessor :id, :title, :powers, :bonus, :minor_image, :main_image, :output_file
 
     def page_width;self.class.config["page_width_px"];end
     def page_height;self.class.config["page_height_px"];end
@@ -17,11 +17,12 @@ module CardGen
     def card_width;page_width / cards_across;end
     def card_height;page_height / cards_down;end
     def template_file;File.join(@image_base, @template_file);end
-    def initialize(title, powers, bonus, slot, main_image)
+    def initialize(id, title, powers, bonus, slot, main_image)
       @template_file = self.class.config["template"]
       @image_base = self.class.config["image_base"]
       @main_image = main_image
       @minor_image = File.join(@image_base, self.class.config["images"][slot] || "image_not_found")
+      @id = IdTextTemplate.new(self, id)
       @title = TitleTextTemplate.new(self, title)
       @powers = PowerTextTemplate.new(self, powers)
       @bonus = BonusTextTemplate.new(self, bonus)
@@ -42,11 +43,28 @@ module CardGen
   class TextTemplate
     attr_accessor :template, :text
     def initialize(card_template, text)
-      @template, @text = card_template, text
+      @template, @text = card_template, (text ? text.to_s : nil)
     end
     # Define a method named 'block' which returns the settings block for the draw object.
   end
-  
+
+  class IdTextTemplate < TextTemplate
+    def text_pos_x;10;end
+    def text_pos_y;30;end
+    def text_width;template.card_width;end
+    def text_height;30;end
+    
+    def block
+      Proc.new {
+        self.gravity = Magick::WestGravity
+        self.pointsize = 24
+        self.stroke = 'transparent'
+        self.fill = '#000000'
+        self.font_weight = Magick::BoldWeight
+      }
+    end
+  end # IDTextTemplate
+
   class TitleTextTemplate < TextTemplate
     def text_pos_x;0;end
     def text_pos_y;-35;end
@@ -121,10 +139,12 @@ module CardGen
         card.composite!(minor_pic, t.minor_image_pos_x, t.minor_image_pos_y, OverCompositeOp)
       end
       
+      add_text card, t.id
       add_text card, t.title
       add_text card, t.powers
       add_text card, t.bonus
       
+      puts 'Generating image...'
       card.density = t.dpc.to_s
       puts 'Completed generating image.'
       card

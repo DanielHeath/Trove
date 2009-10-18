@@ -21,7 +21,7 @@ class Item < ActiveRecord::Base
   end
 
   def generate_card_image
-    template = CardGen::Template.new(name, description, bonus, body_slot, main_image)
+    template = CardGen::Template.new(id, name, description, bonus, body_slot, main_image)
     template.output_file = output_file = File.join(RAILS_ROOT, 'tmp', 'images', 'card.png')
     template.generate_card
     File.open(output_file) do |f|
@@ -30,4 +30,24 @@ class Item < ActiveRecord::Base
     end
   end
   
+end
+
+
+module CardGen
+  class IdTextTemplate < TextTemplate
+    def text_pos_x;50;end
+    def text_pos_y;template.card_height / 2;end
+    def text_width;template.card_width;end
+    def text_height;30;end
+    
+    def block
+      Proc.new {
+        self.gravity = Magick::WestGravity
+        self.pointsize = 240
+        self.stroke = 'transparent'
+        self.fill = '#000000'
+        self.font_weight = Magick::BoldWeight
+      }
+    end
+  end # IDTextTemplate
 end
